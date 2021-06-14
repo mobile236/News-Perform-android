@@ -2,7 +2,7 @@ package com.news.perform.model
 
 import com.squareup.moshi.Json
 
-data class Data(
+data class WeatherDataList(
     @Json(name = "_country")
     val country: Country,
     @Json(name = "_name")

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class WeatherModel(
     @Json(name = "data")
-    val weatherDataList: List<Data>,
+    val weatherDataList: List<WeatherDataList>,
     val isOkay: Boolean,
     val ret: Boolean
 )

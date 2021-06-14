@@ -1,6 +1,10 @@
 package com.news.perform.model
 
+import com.squareup.moshi.Json
+
 data class Country(
-    val _countryID: String?,
-    val _name: String?
+    @Json(name = "_countryID")
+    val countryID: String,
+    @Json(name = "_name")
+    val name: String
 )
