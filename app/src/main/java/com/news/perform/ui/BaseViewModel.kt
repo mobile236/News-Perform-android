@@ -14,4 +14,9 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
     private val appDatabase = AppDatabase.getInstance(application)
     val isLoading = MutableLiveData<Boolean>()
     protected val weatherRepository = WeatherRepository(weatherService, appDatabase.weatherDao())
+
+    override fun onCleared() {
+        super.onCleared()
+        WeatherClient.destroy()
+    }
 }

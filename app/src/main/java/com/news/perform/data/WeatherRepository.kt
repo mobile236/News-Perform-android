@@ -15,13 +15,13 @@ class WeatherRepository(private val weatherService: WeatherService,
             val weatherData = weatherService.getWeatherData()
             val weatherBody = weatherData.body()
             if(weatherData.isSuccessful && weatherBody != null){
-                weatherBody.weatherDataList.forEach { weatherDataList ->
-                    weatherDao.insertData(weatherDataList)
+                if(weatherBody.weatherDataList.isNotEmpty()){
+                    weatherBody.weatherDataList.forEach { weatherDataList ->
+                        weatherDao.insertData(weatherDataList)
+                    }
                 }
             }
-        } catch (exception: Exception){
-
-        }
+        } catch (exception: Exception){ }
         return weatherDao.getWeather()
     }
 

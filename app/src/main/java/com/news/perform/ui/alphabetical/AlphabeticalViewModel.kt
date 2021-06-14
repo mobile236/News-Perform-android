@@ -16,8 +16,8 @@ class AlphabeticalViewModel(application: Application): BaseViewModel(application
     fun getWeatherData(): LiveData<List<WeatherDataList>>{
         isLoading.postValue(true)
         val weatherData = MutableLiveData<List<WeatherDataList>>()
-        viewModelScope.launch(Dispatchers.IO){
-            weatherRepository.getWeatherData().collectLatest { weatherDataList ->
+        viewModelScope.launch(Dispatchers.IO ){
+           weatherRepository.getWeatherData().collectLatest { weatherDataList ->
                 weatherData.postValue(weatherDataList)
                 isLoading.postValue(false)
             }

@@ -2,12 +2,12 @@ package com.news.perform.model
 
 import androidx.room.Embedded
 import androidx.room.Entity
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 @Entity
 data class WeatherModel(
-    @Json(name = "data")
     @Embedded
+    @SerializedName("data")
     val weatherDataList: List<WeatherDataList>,
     val isOkay: Boolean,
     val ret: Boolean

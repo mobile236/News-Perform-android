@@ -27,7 +27,7 @@ class AlphabeticalRecyclerView(private val weatherData: List<WeatherDataList>,
         fun bind(weatherData: WeatherDataList){
             binding.condition.text = weatherData.weatherCondition
             binding.location.text = weatherData.country.name
-            binding.temperature.text = weatherData.weatherTemp
+            binding.temperature.text = weatherData.weatherTemp + "°"
             binding.root.setOnClickListener {
                 clickListener(weatherData.venueID)
             }

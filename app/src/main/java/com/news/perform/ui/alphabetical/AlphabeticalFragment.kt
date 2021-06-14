@@ -42,6 +42,6 @@ class AlphabeticalFragment: Fragment() {
     }
 
     private fun itemClicked(venueId: Long){
-        
+
     }
 }

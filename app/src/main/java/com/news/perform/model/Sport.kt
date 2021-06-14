@@ -1,10 +1,10 @@
 package com.news.perform.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Sport(
-    @Json(name = "_description")
+    @SerializedName( "_description")
     val description: String,
-    @Json(name = "_sportID")
+    @SerializedName( "_sportID")
     val sportID: Long
 )

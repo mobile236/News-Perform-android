@@ -3,36 +3,36 @@ package com.news.perform.model
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "weather")
 data class WeatherDataList(
     // Tell Room to ignore this field for now
     @Ignore
-    @Json(name = "_country")
+    @SerializedName("_country")
     var country: Country,
-    @Json(name = "_name")
+    @SerializedName( "_name")
     var name: String,
-    @Json(name = "_sport")
+    @SerializedName( "_sport")
     // Tell Room to ignore this field for now
     @Ignore
     var sport: Sport,
-    @Json(name = "_venueID")
+    @SerializedName( "_venueID")
     @PrimaryKey(autoGenerate = false)
     var venueID: Long,
-    @Json(name = "_weatherCondition")
+    @SerializedName( "_weatherCondition")
     var weatherCondition: String,
-    @Json(name = "_weatherConditionIcon")
+    @SerializedName("_weatherConditionIcon")
     var weatherConditionIcon: String,
-    @Json(name = "_weatherFeelsLike")
+    @SerializedName("_weatherFeelsLike")
     var weatherFeelsLike: String,
-    @Json(name = "_weatherHumidity")
+    @SerializedName( "_weatherHumidity")
     var weatherHumidity: String,
-    @Json(name = "_weatherLastUpdated")
+    @SerializedName("_weatherLastUpdated")
     var weatherLastUpdated: Int,
-    @Json(name = "_weatherTemp")
+    @SerializedName("_weatherTemp")
     var weatherTemp: String,
-    @Json(name = "_weatherWind")
+    @SerializedName("_weatherWind")
     var weatherWind: String
 ){
     constructor(): this(

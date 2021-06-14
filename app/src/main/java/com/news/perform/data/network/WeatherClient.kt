@@ -1,8 +1,9 @@
 package com.news.perform.data.network
 
+import com.google.gson.GsonBuilder
 import com.news.perform.Constants
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 class WeatherClient {
     companion object {
@@ -13,12 +14,13 @@ class WeatherClient {
         fun createClient(): Retrofit {
             return INSTANCE ?: Retrofit.Builder()
                 .baseUrl(Constants.SERVER_URL)
-                .addConverterFactory(
-                    MoshiConverterFactory
-                        .create()
-                        .withNullSerialization()
-                        .asLenient()
-                )
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder()
+                    .enableComplexMapKeySerialization()
+                    .serializeNulls()
+                    .setPrettyPrinting()
+                    .setLenient()
+                    .setVersion(1.0)
+                    .create()))
                 .build().also { INSTANCE = it }
         }
 

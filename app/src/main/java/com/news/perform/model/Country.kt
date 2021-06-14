@@ -1,10 +1,10 @@
 package com.news.perform.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Country(
-    @Json(name = "_countryID")
+    @SerializedName("_countryID")
     val countryID: Long,
-    @Json(name = "_name")
+    @SerializedName("_name")
     val name: String
 )
