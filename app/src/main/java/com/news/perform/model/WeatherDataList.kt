@@ -1,28 +1,42 @@
 package com.news.perform.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
+@Entity(tableName = "weather")
 data class WeatherDataList(
+    // Tell Room to ignore this field for now
+    @Ignore
     @Json(name = "_country")
-    val country: Country,
+    var country: Country,
     @Json(name = "_name")
-    val name: String,
+    var name: String,
     @Json(name = "_sport")
-    val sport: Sport,
+    // Tell Room to ignore this field for now
+    @Ignore
+    var sport: Sport,
     @Json(name = "_venueID")
-    val venueID: String,
+    @PrimaryKey(autoGenerate = false)
+    var venueID: Long,
     @Json(name = "_weatherCondition")
-    val weatherCondition: String,
+    var weatherCondition: String,
     @Json(name = "_weatherConditionIcon")
-    val weatherConditionIcon: String,
+    var weatherConditionIcon: String,
     @Json(name = "_weatherFeelsLike")
-    val weatherFeelsLike: String,
+    var weatherFeelsLike: String,
     @Json(name = "_weatherHumidity")
-    val weatherHumidity: String,
+    var weatherHumidity: String,
     @Json(name = "_weatherLastUpdated")
-    val weatherLastUpdated: Int,
+    var weatherLastUpdated: Int,
     @Json(name = "_weatherTemp")
-    val weatherTemp: String,
+    var weatherTemp: String,
     @Json(name = "_weatherWind")
-    val weatherWind: String
-)
+    var weatherWind: String
+){
+    constructor(): this(
+        Country(0, ""), "", Sport("", 0), 0,
+        "", "", "", "", 0,
+        "", "")
+}

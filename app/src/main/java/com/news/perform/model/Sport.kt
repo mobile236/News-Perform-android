@@ -6,5 +6,5 @@ data class Sport(
     @Json(name = "_description")
     val description: String,
     @Json(name = "_sportID")
-    val sportID: String
+    val sportID: Long
 )
