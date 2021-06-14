@@ -16,7 +16,7 @@ class WeatherRepository(private val weatherService: WeatherService,
                         private val countryDao: CountryDao) {
 
 
-    suspend fun getWeatherData(): Flow<List<WeatherDataList>> {
+    suspend fun getWeatherData(size: Int): Flow<List<WeatherDataList>> {
         try {
             val weatherData = weatherService.getWeatherData()
             val weatherBody = weatherData.body()
@@ -35,7 +35,12 @@ class WeatherRepository(private val weatherService: WeatherService,
                 }
             }
         } catch (exception: Exception){ }
-        return weatherDao.getWeather()
+        return weatherDao.getWeather(size * 30)
     }
 
+    fun getWeatherDataByTemperature(size: Int) = weatherDao.getWeatherByTemperature(size * 30)
+
+    fun getWeatherDataByLastUpdated(size: Int) = weatherDao.getWeatherByLastUpdated(size * 30)
+
+    fun getWeatherByVenueId(venueId: Long) = weatherDao.getWeatherByVenueId(venueId)
 }

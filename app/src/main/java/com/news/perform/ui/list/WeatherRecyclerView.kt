@@ -8,7 +8,8 @@ import com.news.perform.databinding.WeatherItemsBinding
 import com.news.perform.model.WeatherDataList
 
 class WeatherRecyclerView(private val weatherData: List<WeatherDataList>,
-                          private val clickListener:(position: Long) -> Unit): RecyclerView.Adapter<WeatherRecyclerView.ItemHolder>() {
+                          private val clickListener:(position: Long) -> Unit):
+    RecyclerView.Adapter<WeatherRecyclerView.ItemHolder>() {
 
     private var weatherItemsBinding: WeatherItemsBinding? = null
     private val binding get() = weatherItemsBinding!!
