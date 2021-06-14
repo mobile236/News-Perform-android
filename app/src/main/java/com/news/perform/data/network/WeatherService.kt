@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 
-interface WeatherApi {
+interface WeatherService {
 
     @GET("weather.json")
     suspend fun getWeatherData(): Response<WeatherModel>

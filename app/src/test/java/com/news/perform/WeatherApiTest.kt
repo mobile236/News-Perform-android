@@ -1,9 +1,9 @@
 package com.news.perform
 
-import com.news.perform.data.network.WeatherApi
+import com.news.perform.data.network.WeatherService
 import com.news.perform.data.network.WeatherClient
-import junit.framework.Assert.assertNotNull
-import junit.framework.Assert.assertTrue
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -11,18 +11,17 @@ import org.junit.Test
 
 class WeatherApiTest {
 
-    private lateinit var weatherApi: WeatherApi
+    private lateinit var weatherService: WeatherService
 
     @Before
     fun setup(){
-        weatherApi = WeatherClient.createClient().create(WeatherApi::class.java)
-
+        weatherService = WeatherClient.createClient().create(WeatherService::class.java)
     }
 
     @Test
     fun testNetworkCall(){
         runBlocking {
-            val weatherData = weatherApi.getWeatherData()
+            val weatherData = weatherService.getWeatherData()
             assertNotNull(weatherData)
             assertTrue(weatherData.isSuccessful)
         }
@@ -31,10 +30,10 @@ class WeatherApiTest {
     @Test
     fun testNonNullData(){
         runBlocking {
-            val weatherData = weatherApi.getWeatherData()
+            val weatherData = weatherService.getWeatherData()
             val weatherDataBody = weatherData.body()
             assertNotNull(weatherData)
-            assertTrue(weatherDataBody?.data?.isNotEmpty() ?: false)
+            assertTrue(weatherDataBody?.weatherDataList?.isNotEmpty() ?: false)
         }
     }
 
