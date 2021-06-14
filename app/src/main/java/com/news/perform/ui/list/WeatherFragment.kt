@@ -1,4 +1,4 @@
-package com.news.perform.ui.alphabetical
+package com.news.perform.ui.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.news.perform.databinding.FragmentAlphabeticalBinding
+import com.news.perform.model.DataType
 import com.news.perform.utils.getViewModel
 
-class AlphabeticalFragment: Fragment() {
+class WeatherFragment: Fragment() {
 
     private var fragmentAlphabeticalFragment: FragmentAlphabeticalBinding? = null
     private val binding get() = fragmentAlphabeticalFragment!!
-    private val alphabeticalViewModel by lazy { getViewModel(AlphabeticalViewModel::class.java) }
+    private val weatherViewModel by lazy { getViewModel(WeatherViewModel::class.java) }
+    private val dataType by lazy { arguments?.get("DATATYPE") as DataType }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentAlphabeticalFragment = FragmentAlphabeticalBinding.inflate(inflater, container, false)
@@ -30,13 +32,13 @@ class AlphabeticalFragment: Fragment() {
     private fun setRecyclerView(){
         binding.weatherList.layoutManager = LinearLayoutManager(requireContext())
         binding.weatherList.addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
-        alphabeticalViewModel.getWeatherData().observe(viewLifecycleOwner){ weatherData ->
-            val alphabeticalRecyclerView = AlphabeticalRecyclerView(weatherData) { data ->
+        weatherViewModel.getWeatherData(dataType).observe(viewLifecycleOwner){ weatherData ->
+            val alphabeticalRecyclerView = WeatherRecyclerView(weatherData) { data ->
                 itemClicked(data)
             }
             binding.weatherList.adapter = alphabeticalRecyclerView
         }
-        alphabeticalViewModel.isLoading.observe(viewLifecycleOwner){ isLoading ->
+        weatherViewModel.isLoading.observe(viewLifecycleOwner){ isLoading ->
             binding.swipeContainerLayout.isRefreshing = isLoading
         }
     }

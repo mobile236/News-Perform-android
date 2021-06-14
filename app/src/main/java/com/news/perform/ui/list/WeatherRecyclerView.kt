@@ -1,4 +1,4 @@
-package com.news.perform.ui.alphabetical
+package com.news.perform.ui.list
 
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.news.perform.databinding.WeatherItemsBinding
 import com.news.perform.model.WeatherDataList
 
-class AlphabeticalRecyclerView(private val weatherData: List<WeatherDataList>,
-                               private val clickListener:(position: Long) -> Unit): RecyclerView.Adapter<AlphabeticalRecyclerView.ItemHolder>() {
+class WeatherRecyclerView(private val weatherData: List<WeatherDataList>,
+                          private val clickListener:(position: Long) -> Unit): RecyclerView.Adapter<WeatherRecyclerView.ItemHolder>() {
 
     private var weatherItemsBinding: WeatherItemsBinding? = null
     private val binding get() = weatherItemsBinding!!

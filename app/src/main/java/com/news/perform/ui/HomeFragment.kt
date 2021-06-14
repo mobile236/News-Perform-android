@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.news.perform.databinding.FragmentHomeBinding
+import com.news.perform.ui.list.ViewPagerAdapter
 
 class HomeFragment: Fragment() {
 
     private var fragmentHome: FragmentHomeBinding? = null
     private val binding get() = fragmentHome!!
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         fragmentHome = FragmentHomeBinding.inflate(inflater, container, false)
@@ -25,15 +27,19 @@ class HomeFragment: Fragment() {
     }
 
     private fun setTab(){
-        val adapter = ViewPagerAdapter(this)
-        binding.viewPager.adapter = adapter
+        viewPagerAdapter = ViewPagerAdapter(this)
+        binding.viewPager.adapter = viewPagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            if(position == 0){
-                tab.text = "A-Z"
-            } else if(position == 1){
-                tab.text = "Temperature"
-            } else {
-                tab.text = "Last updated"
+            when (position) {
+                0 -> {
+                    tab.text = "A-Z"
+                }
+                1 -> {
+                    tab.text = "Temperature"
+                }
+                else -> {
+                    tab.text = "Last updated"
+                }
             }
         }.attach()
     }
