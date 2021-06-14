@@ -13,7 +13,8 @@ abstract class BaseViewModel(application: Application): AndroidViewModel(applica
     private val weatherService = WeatherClient.createClient().create(WeatherService::class.java)
     private val appDatabase = AppDatabase.getInstance(application)
     val isLoading = MutableLiveData<Boolean>()
-    protected val weatherRepository = WeatherRepository(weatherService, appDatabase.weatherDao())
+    protected val weatherRepository = WeatherRepository(weatherService, appDatabase.weatherDao(),
+        appDatabase.sportDao(), appDatabase.countryDao())
 
     override fun onCleared() {
         super.onCleared()

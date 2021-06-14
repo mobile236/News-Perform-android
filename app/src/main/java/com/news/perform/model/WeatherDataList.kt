@@ -1,25 +1,23 @@
 package com.news.perform.model
 
+import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "weather")
 data class WeatherDataList(
-    // Tell Room to ignore this field for now
-    @Ignore
+    @Embedded
     @SerializedName("_country")
     var country: Country,
     @SerializedName( "_name")
-    var name: String,
+    var locationName: String,
     @SerializedName( "_sport")
-    // Tell Room to ignore this field for now
-    @Ignore
+    @Embedded
     var sport: Sport,
     @SerializedName( "_venueID")
     @PrimaryKey(autoGenerate = false)
-    var venueID: Long,
+    var venueId: Long,
     @SerializedName( "_weatherCondition")
     var weatherCondition: String,
     @SerializedName("_weatherConditionIcon")
@@ -36,7 +34,8 @@ data class WeatherDataList(
     var weatherWind: String
 ){
     constructor(): this(
-        Country(0, ""), "", Sport("", 0), 0,
+        Country(0,0,0, ""), "",
+        Sport(0,0,"", 0), 0,
         "", "", "", "", 0,
         "", "")
 }

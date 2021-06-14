@@ -1,5 +1,6 @@
 package com.news.perform.ui.alphabetical
 
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,11 +26,23 @@ class AlphabeticalRecyclerView(private val weatherData: List<WeatherDataList>,
 
     inner class ItemHolder(itemView: WeatherItemsBinding): RecyclerView.ViewHolder(itemView.root){
         fun bind(weatherData: WeatherDataList){
-            binding.condition.text = weatherData.weatherCondition
-            binding.location.text = weatherData.country.name
-            binding.temperature.text = weatherData.weatherTemp + "°"
+            val weatherCondition = if(weatherData.weatherCondition.isEmpty()){
+                binding.condition.setTypeface(null, Typeface.ITALIC)
+                "Unknown"
+            } else {
+                weatherData.weatherCondition
+            }
+            val temperature = if(weatherData.weatherTemp.isEmpty()){
+                ""
+            } else {
+                weatherData.weatherTemp + "°"
+            }
+
+            binding.condition.text = weatherCondition
+            binding.location.text = weatherData.locationName
+            binding.temperature.text = temperature
             binding.root.setOnClickListener {
-                clickListener(weatherData.venueID)
+                clickListener(weatherData.venueId)
             }
         }
     }
