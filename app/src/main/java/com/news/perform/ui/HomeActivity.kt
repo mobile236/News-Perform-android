@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import com.news.perform.R
 import com.news.perform.databinding.ActivityHomeBinding
+import com.news.perform.ui.country.CountryBottomSheet
 
 class HomeActivity: AppCompatActivity() {
 
@@ -18,6 +19,13 @@ class HomeActivity: AppCompatActivity() {
         binding.toolbar.title = "Weather"
         supportFragmentManager.commit {
             replace(R.id.frameLayout, HomeFragment())
+        }
+        buttonClick()
+    }
+
+    private fun buttonClick(){
+        binding.filterButton.setOnClickListener {
+            CountryBottomSheet().show(supportFragmentManager, "countryList" )
         }
     }
 }
